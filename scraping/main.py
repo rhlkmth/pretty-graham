@@ -14,15 +14,15 @@ if not os.path.exists("articles"):
     os.makedirs("articles")
 
 # Loop through all the items in the feed
-for item in feed["items"]:
+for item in feed["entries"]:  # Changed from feed["items"] to feed["entries"]
     # Get the title and content of the article
-    separator = "\n\n"
-
     title = item["title"]
     link = item["link"]
     response = requests.get(link)
     html = response.text
-    content = """date: 2024-06-01T15:32:14Z
+
+    # Create the content string
+    content = f"""date: 2024-06-01T15:32:14Z
 tags: ['writings']
 draft: false
 summary: 'The Time Traveller (for so it will be convenient to speak of him) was
@@ -36,10 +36,10 @@ layout: PostSimple
 
     # Write the MDX file
     with open(os.path.join("articles", filename), "w") as f:
-        f.write('---\n\n')
+        f.write('---\n')  # Removed an extra newline character
         f.write(f"title: {title}\n")
         f.write(content)
-        f.write(f"canonicalUrl: {link}")
-        f.write('\n\n---')
+        f.write(f"\ncanonicalUrl: {link}")  # Added a newline character before canonicalUrl
+        f.write('\n---')
         f.write('\n\n')
-        f.write(markdownify.markdownify(html, heading_style="ATX").split("."))
+        f.write(markdownify.markdownify(html, heading_style="ATX"))  # Removed the split(".") call
