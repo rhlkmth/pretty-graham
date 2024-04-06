@@ -22,7 +22,7 @@ for item in feed["items"]:
     link = item["link"]
     response = requests.get(link)
     html = response.text
-    content = """date: 2021-06-01T15:32:14Z
+    content = """date: 2024-06-01T15:32:14Z
 tags: ['writings']
 draft: false
 summary: 'The Time Traveller (for so it will be convenient to speak of him) was
