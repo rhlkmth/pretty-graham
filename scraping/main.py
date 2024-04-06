@@ -4,7 +4,7 @@ import os
 import markdownify
 
 # Replace this with the URL of the RSS feed you want to scrape
-RSS_FEED_URL = "http://www.aaronsw.com/2002/feeds/pgessays.rss"
+RSS_FEED_URL = "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"
 
 # Parse the RSS feed
 feed = feedparser.parse(RSS_FEED_URL)
